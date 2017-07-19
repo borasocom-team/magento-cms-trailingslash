@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+
+    <modules>
+        <Boraso_CmsTrailingslash>
+            <version>0.1.0</version>
+        </Boraso_CmsTrailingslash>
+    </modules>
+
+
+    <frontend>
+        <routers>
+            <contacts>
+                <use>standard</use>
+                <args>
+                    <modules>
+                        <boraso_cmstrailingslash before="Mage_Contacts">Boraso_CmsTrailingslash</boraso_cmstrailingslash>
+                    </modules>
+                </args>
+            </contacts>
+        </routers>
+    </frontend>
+
+
+
+    <global>
+
+        <models>
+            <boraso_cmstrailingslash>
+                <class>Boraso_CmsTrailingslash_Model</class>
+                <resourceModel>boraso_cmstrailingslash_resource</resourceModel>
+            </boraso_cmstrailingslash>
+            <boraso_cmstrailingslash_resource>
+                <class>Boraso_CmsTrailingslash_Model_Resource</class>
+            </boraso_cmstrailingslash_resource>
+        </models>
+
+        <helpers>
+            <boraso_cmstrailingslash>
+                <class>Boraso_CmsTrailingslash_Helper</class>
+            </boraso_cmstrailingslash>
+        </helpers>
+
+        <resources>
+            <boraso_cmstrailingslash_setup>
+                <setup>
+                    <module>Boraso_CmsTrailingslash</module>
+                </setup>
+            </boraso_cmstrailingslash_setup>
+        </resources>
+
+        <events>
+            <cms_page_render>
+                <observers>
+                    <boraso_cmstrailingslash>
+                        <type>singleton</type>
+                        <class>Boraso_CmsTrailingslash_Model_Observer</class>
+                        <method>cmsPageCheckTrailingslash</method>
+                    </boraso_cmstrailingslash>
+                </observers>
+            </cms_page_render>
+        </events>
+
+    </global>
+
+</config>
