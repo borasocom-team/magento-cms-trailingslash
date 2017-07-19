@@ -7,7 +7,11 @@ class Boraso_CmsTrailingslash_Helper_Data extends Mage_Core_Helper_Abstract
         $requestUri = $action->getRequest()->getRequestUri();
         $lastChar = substr($requestUri, -1);
 
-        if ($lastChar != '/') {
+        if (
+		!Mage::app()->getStore()->isAdmin() &&
+		Mage::getDesign()->getArea() != 'adminhtml' &&
+		$lastChar != '/'
+	) {
 
             $redirectTo = $requestUri . "/";
             $action->getResponse()->setRedirect($redirectTo, 301);
